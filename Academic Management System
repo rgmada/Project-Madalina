@@ -85,5 +85,35 @@ INNER JOIN Enrollmentinfo ei ON si.STU_ID = ei.STU_ID
 INNER JOIN CoursesInfo ci ON ci.COURSE_ID = ei.COURSE_ID
 WHERE si.STU_ID = '1925';
 
--- c) 
+-- c) Write a query to retrieve course information, including course name, instructor information.
+SELECT COURSE_NAME, COURSE_INSTRUCTOR_NAME
+FROM CoursesInfo
+ORDER BY COURSE_INSTRUCTOR_NAME;
+
+-- d) Write a query to retrieve course information for a specific course.
+SELECT COURSE_NAME, COURSE_INSTRUCTOR_NAME
+FROM CoursesInfo
+WHERE COURSE_ID = 5;
+
+SELECT ci.COURSE_NAME, ci.COURSE_INSTRUCTOR_NAME, si.STU_NAME, ei.ENROLL_STATUS
+FROM CoursesInfo ci
+INNER JOIN Enrollmentinfo ei ON ci.COURSE_ID = ei.COURSE_ID
+INNER JOIN StudentInfo si ON si.STU_ID = ei.STU_ID
+WHERE ci.COURSE_ID = 5
+AND ei.ENROLL_STATUS = 'Enrolled';
+
+-- e) Write a query to retrieve course information for multiple courses.
+SELECT COURSE_NAME, COURSE_INSTRUCTOR_NAME
+FROM CoursesInfo
+WHERE COURSE_ID IN (5, 7, 8);
+
+-- f) Test the queries to ensure accurate retrieval of student information (execute the queries and verify the results against the expected output).
+-- all
+SELECT * FROM StudentInfo;
+
+-- by Stu_Id
+SELECT * FROM StudentInfo WHERE STU_ID = 1925;
+
+-- by Stu_Name
+SELECT * FROM StudentInfo WHERE STU_NAME = 'GEORGE';
 
