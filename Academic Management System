@@ -117,3 +117,49 @@ SELECT * FROM StudentInfo WHERE STU_ID = 1925;
 -- by Stu_Name
 SELECT * FROM StudentInfo WHERE STU_NAME = 'GEORGE';
 
+-- Reporting and Analytics
+-- a) Write a query to retrieve the number of students enrolled in each course.
+SELECT ci.COURSE_NAME, COUNT (*)
+FROM CoursesInfo ci
+INNER JOIN Enrollmentinfo ei ON ci.COURSE_ID = ei.COURSE_ID
+where ei.Enroll_status = 'Enrolled'
+group by ci.COURSE_NAME;
+
+--or
+
+SELECT ci.COURSE_NAME, COUNT (*) as No_Enrolled_Students
+FROM CoursesInfo ci
+LEFT JOIN Enrollmentinfo ei ON ci.COURSE_ID = ei.COURSE_ID
+WHERE ei.Enroll_status = 'Enrolled'
+GROUP BY ci.COURSE_NAME;
+
+-- b) Write a query to retrieve the list of students enrolled in a specific course.
+SELECT si.STU_NAME
+FROM StudentInfo si
+INNER JOIN Enrollmentinfo ei ON si.STU_ID = ei.STU_ID
+INNER JOIN CoursesInfo ci ON ci.COURSE_ID = ei.COURSE_ID
+WHERE ei.Enroll_status = 'Enrolled'
+AND ci.COURSE_NAME = 'Excel';
+
+-- c) Write a query to retrieve the count of enrolled students for each instructor.
+SELECT ci.COURSE_INSTRUCTOR_NAME, COUNT (*) AS No_Enrolled_Students
+FROM CoursesInfo ci
+JOIN Enrollmentinfo ei ON ci.COURSE_ID = ei.COURSE_ID
+WHERE ei.Enroll_status = 'Enrolled'
+GROUP BY ci.COURSE_INSTRUCTOR_NAME;
+
+-- d) Write a query to retrieve the list of students who are enrolled in multiple courses.
+SELECT si.STU_NAME, COUNT (*) AS No_Enrolled_Students
+FROM StudentInfo si
+JOIN Enrollmentinfo ei ON si.STU_ID = ei.STU_ID
+WHERE ei.Enroll_status = 'Enrolled'
+GROUP BY si.STU_NAME
+HAVING COUNT (*) > 1;
+
+-- e) Write a query to retrieve the courses that have the highest number of enrolled students (arranging from highest to lowest).
+SELECT ci.COURSE_NAME, COUNT (*) as No_Enrolled_Students
+FROM CoursesInfo ci
+LEFT JOIN Enrollmentinfo ei ON ci.COURSE_ID = ei.COURSE_ID
+WHERE ei.Enroll_status = 'Enrolled'
+GROUP BY ci.COURSE_NAME
+ORDER BY No_Enrolled_Students DESC;
