@@ -1,3 +1,4 @@
+-- Database Creation
 CREATE TABLE StudentInfo (
     STU_ID INT NOT NULL PRIMARY KEY, 
     STU_NAME VARCHAR(20), 
@@ -22,4 +23,54 @@ CREATE TABLE Enrollmentinfo (
     FOREIGN KEY (COURSE_ID) REFERENCES CoursesInfo(COURSE_ID) ON DELETE CASCADE
 );
 
+-- Data Creation
+INSERT INTO StudentInfo VALUES (1456, 'GEORGE', '12-MAR-82', '289028902890', 'george@gmail.com', 'BUCURESTI'),
+    (1325, 'VASILE', '05-0CT-84', '245624562456', 'vasile@gmail.com', 'PITESTI'),
+    (1645, 'MARIA', '17-JUN-83', '140014001400', 'maria@gmail.com', 'PLOIESTI'),
+    (3145, 'ION', '24-JAN-85', '325232523252', 'ion@gmail.com', 'PLOIESTI'),
+    (2146, 'STANCA', '15-MAY-82', '262026202620', 'stanca@gmail.com', 'BUCURESTI'),
+    (3251, 'ALEX', '07-NOV-81', '157015701570', 'alex@gmail.com','BRASOV'),
+    (2215, 'ELENA', '29-AUG-84', '224622462246', 'elena@gmail.com','BUCURESTI'),
+    (4311, 'ADRIAN', '31-JUL-83', '445044504450', 'adrian@gmail.com','BUCURESTI'),
+    (3514, 'FLOREA', '03-FEB-81', '323032303230', 'florea@gmail.com','BRASOV'),
+    (1925, 'OANA', '20-DEC-84', '432143214321', 'oana@gmail.com','BUCURESTI'),
+    (2101, 'MARIUS', '02-SEP-85', '251425142514', 'marius@gmail.com','PITESTI'),
+    (4705, 'VOICU', '19-APR-84', '129012901290', 'voicu@gmail.com','BRASOV')
+;
 
+INSERT INTO CoursesInfo VALUES (1, 'Basic SQL', 'Ionescu'),
+    (2, 'Java Basic', 'Popescu'),
+    (3, 'Excel', 'Pamfil'),
+    (4, 'VBA', 'Pamfil'),
+    (5, 'Advanced SQL', 'Ionescu'),
+    (6, 'Advanced Java', 'Popescu'),
+    (7, 'Python', 'Dumitriu'),
+    (8, 'C++', 'Georgescu'),
+    (9, 'JavaScript', 'Popescu')
+;
+
+INSERT INTO Enrollmentinfo VALUES (0011, 1456, 8, 'Enrolled'),
+    (0012, 2101, 1, 'Not Enrolled'),
+    (0013, 1925, 3, 'Not Enrolled'),
+    (0014, 4705, 7, 'Enrolled'),
+    (0015, 3514, 8, 'Not Enrolled'),
+    (0016, 4311, 9, 'Enrolled'),
+    (0017, 2215, 3, 'Enrolled'),
+    (0018, 1325, 2, 'Enrolled'),
+    (0019, 3145, 4, 'Enrolled'),
+    (0020, 1645, 8, 'Enrolled'),
+    (0021, 2146, 4, 'Enrolled'),
+    (0022, 3251, 6, 'Enrolled'),
+    (0023, 2101, 2, 'Enrolled'),
+    (0024, 1925, 1, 'Enrolled'),
+    (0025, 3514, 3, 'Enrolled'),
+    (0026, 3145, 3, 'Not Enrolled'),
+    (0027, 3251, 9, 'Not Enrolled'),
+    (0028, 2146, 3, 'Enrolled'),
+    (0029, 4705, 9, 'Enrolled'),
+    (0030, 1925, 2, 'Enrolled'),
+    (0031, 1456, 5, 'Not Enrolled')
+;
+
+-- Retrieve the Student Information
+-- a) Write a query to retrieve student details, such as student name, contact informations, and Enrollment status. 
