@@ -1,1 +1,24 @@
+CREATE DATABASE student_database
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
 
+CREATE TABLE public.student_table
+(
+    "Student_id" integer NOT NULL,
+    "Stu_name" text,
+    "Email_id" text,
+    "Phone_no" numeric,
+    "Address" text,
+    "Date_of_birth" date,
+    "Gender" text,
+    "Major" text,
+    "GPA" numeric,
+    "Grade" text,
+    PRIMARY KEY ("Student_id")
+);
+
+ALTER TABLE IF EXISTS public.student_table
+    OWNER to postgres;
