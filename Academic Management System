@@ -73,4 +73,17 @@ INSERT INTO Enrollmentinfo VALUES (0011, 1456, 8, 'Enrolled'),
 ;
 
 -- Retrieve the Student Information
--- a) Write a query to retrieve student details, such as student name, contact informations, and Enrollment status. 
+-- a) Write a query to retrieve student details, such as student name, contact information and Enrollment status. 
+SELECT si.STU_NAME, si.PHONE_NO, si.EMAIL_ID, si.ADDRESS, ei.ENROLL_STATUS
+FROM StudentInfo si
+INNER JOIN Enrollmentinfo ei ON si.STU_ID = ei.STU_ID;
+
+-- b) Write a query to retrieve a list of courses in which a specific student is enrolled. 
+SELECT si.STU_ID, si.STU_NAME, ci.COURSE_NAME, ei.ENROLL_STATUS
+FROM StudentInfo si
+INNER JOIN Enrollmentinfo ei ON si.STU_ID = ei.STU_ID
+INNER JOIN CoursesInfo ci ON ci.COURSE_ID = ei.COURSE_ID
+WHERE si.STU_ID = '1925';
+
+-- c) 
+
