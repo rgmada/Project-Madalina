@@ -1,11 +1,11 @@
-CREATE DATABASE student_database
+CREATE DATABASE "Student_database"
     WITH
     OWNER = postgres
     ENCODING = 'UTF8'
     CONNECTION LIMIT = -1
     IS_TEMPLATE = False;
 
-CREATE TABLE public.student_table
+CREATE TABLE public."Student_table"
 (
     "Student_id" integer NOT NULL,
     "Stu_name" text,
@@ -18,8 +18,23 @@ CREATE TABLE public.student_table
     "Major" text,
     "GPA" numeric,
     "Grade" text,
-    CONSTRAINT student_table_pkey PRIMARY KEY ("Student_id")
+    PRIMARY KEY ("Student_id")
 );
 
-ALTER TABLE IF EXISTS public.student_table
+ALTER TABLE IF EXISTS public."Student_table"
     OWNER to postgres;
+
+INSERT INTO student_table (Student_id, Stu_name, Department, Email_id, Phone_no, Address, Date_of_birth, Gender, Major, GPA, Grade)
+VALUES
+    (1456, 'George Popescu', 'Computer Science', 'george@gmail.com', 289028902890, '123 Main Street', '12-MAR-82', 'Male', 'Computer Science', 9.8, 'A'),
+    (1325, 'Vasile Ionescu', 'Mathematics', 'vasile@gmail.com', 245624562456, '456 Elm Street', '05-0CT-84', 'Male', 'Mathematics', 7.5, 'B'),
+    (1645, 'Maria Popa', 'Physics', 'maria@gmail.com', 140014001400, '789 Oak Street', '17-JUN-83', 'Female', 'Physics', 4.2, 'E'),
+    (3145, 'Ion Stan', 'English', 'ion@gmail.com', 325232523252, '987 Pine Street', '24-JAN-85', 'Male', 'English', 8.9, 'A'),
+	(2146, 'Stanca Dumitru', 'History', 'stanca@gmail.com', 262026202620, '654 Maple Street', '15-MAY-82', 'Female', 'History', 6.6, 'C'),
+	(3251, 'Alex Mihai', 'Biology', 'alex@gmail.com', 157015701570, '321 Oak Street', '07-NOV-81', 'Male', 'Biology', 2.7, 'F'),
+    (2215, 'Elena Stoica', 'Chemistry', 'elena@gmail.com', 224622462246, '789 Elm Street', '29-AUG-84', 'Female', 'Chemistry', 5.0, 'D'),
+    (4311, 'Adrian Gheorghe', 'Art', 'adrian@gmail.com', 445044504450, '456 Pine Street', '31-JUL-83', 'Male', 'Art', 8.1, 'B'),
+    (3514, 'Florea Vasile', 'Computer Science', 'florea@gmail.com', 323032303230, '987 Elm Street', '03-FEB-81', 'Male', 'Computer Science', 3.5, 'E'),
+    (1925, 'Oana Radu', 'Mathematics', 'oana@gmail.com', 432143214321, '123 Oak Street', '20-DEC-84', 'Female', 'Mathematics', 2.8, 'F')
+;
+
