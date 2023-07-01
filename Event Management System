@@ -6,3 +6,29 @@ CREATE DATABASE "EventsManagement"
     ENCODING = 'UTF8'
     CONNECTION LIMIT = -1
     IS_TEMPLATE = False;
+
+CREATE TABLE Events (
+	Event_Id INT NOT NULL PRIMARY KEY,
+	Event_Name VARCHAR (20),
+	Event_Date DATE,
+	Event_Location VARCHAR (20),
+	Event_Description VARCHAR(100)
+);
+
+CREATE TABLE Attendees (
+	Attendee_Id INT NOT NULL PRIMARY KEY,
+	Attendee_Name VARCHAR (20),
+	Attendee_Phone NUMERIC,
+	Attendee_Email VARCHAR (20),
+	Attendee_City TEXT
+);
+
+CREATE TABLE Registrations (
+	Registration_Id INT NOT NULL PRIMARY KEY,
+	Event_Id INT,
+	Attendee_Id INT,
+	Registration_Date DATE,
+	Regitration_Amount VARCHAR(20),
+	FOREIGN KEY (Event_Id) REFERENCES Events(Event_Id) ON DELETE CASCADE, 
+    FOREIGN KEY (Attendee_Id) REFERENCES Attendees(Attendee_Id) ON DELETE CASCADE
+);
