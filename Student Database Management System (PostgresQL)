@@ -9,6 +9,7 @@ CREATE TABLE public.student_table
 (
     "Student_id" integer NOT NULL,
     "Stu_name" text,
+    "Department" text,
     "Email_id" text,
     "Phone_no" numeric,
     "Address" text,
@@ -17,7 +18,7 @@ CREATE TABLE public.student_table
     "Major" text,
     "GPA" numeric,
     "Grade" text,
-    PRIMARY KEY ("Student_id")
+    CONSTRAINT student_table_pkey PRIMARY KEY ("Student_id")
 );
 
 ALTER TABLE IF EXISTS public.student_table
