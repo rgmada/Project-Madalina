@@ -1,1 +1,8 @@
+-- 1. Create a database named "EventsManagement". Create tables for Events, Attendees and Registrations.
 
+CREATE DATABASE "EventsManagement"
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
