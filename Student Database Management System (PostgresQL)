@@ -44,3 +44,49 @@ VALUES
 
 SELECT * FROM Student_table
 ORDER BY Grade DESC;
+
+-- 4. Implement a query to retrieve information about all male students from the "Student_table".
+
+SELECT * FROM Student_table
+WHERE Gender = 'Male';
+
+-- or
+
+SELECT * FROM Student_table
+WHERE LOWER(Gender) = 'male';
+
+-- 5. Create a query to fetch the details of students who have a GPA less than 5.0 from the "Student_table".
+
+SELECT * FROM Student_table
+WHERE GPA < 5.0;
+
+-- 6. Write an update statement to modify the e-mail and grade of a student with a specific ID in the "Student_table".
+
+UPDATE Student_table
+SET Email_id = 'radu@gmail.com', Grade = 'E'
+WHERE Student_id = 1925;
+
+SELECT * FROM Student_table
+WHERE Student_id = 1925;
+
+-- 7. Create a query to retrieve the names and ages of all students who have grade "B" from the "Student_table".
+
+SELECT Stu_name, EXTRACT(YEAR FROM AGE(CURRENT_DATE, Date_of_birth)) AS Age
+FROM Student_table
+WHERE Grade = 'B';
+
+-- 8. Create a query to group the "Student_table" by the "Department" and "Gender" columns and calculate the average GPA for each combination.
+
+SELECT Department, Gender, AVG (GPA) as Average_GPA
+FROM Student_table
+GROUP BY Department, Gender;
+
+-- 9. Rename the "Student_table" to "Student_info" using the appropiate SQL statement.
+
+ ALTER TABLE Student_table RENAME TO Student_info;
+
+-- 10. Write a query to retrieve the name of the student with the highest GPA from the "Student_info" table.
+
+SELECT Stu_name
+FROM Student_info
+WHERE GPA = (SELECT MAX(GPA) FROM Student_info);
