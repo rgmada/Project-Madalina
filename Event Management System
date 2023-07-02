@@ -28,9 +28,9 @@ CREATE TABLE Registrations (
 	Event_Id INT,
 	Attendee_Id INT,
 	Registration_Date DATE,
-	Regitration_Amount VARCHAR(20),
+	Registration_Amount INT,
 	FOREIGN KEY (Event_Id) REFERENCES Events(Event_Id) ON DELETE CASCADE, 
-    FOREIGN KEY (Attendee_Id) REFERENCES Attendees(Attendee_Id) ON DELETE CASCADE
+    	FOREIGN KEY (Attendee_Id) REFERENCES Attendees(Attendee_Id) ON DELETE CASCADE
 );
 
 -- 2. Insert values in Events, Attendees and Registrations tables.
@@ -65,23 +65,23 @@ VALUES
     	(4705, 'Voicu Popovici', 129012901290, 'voicu@gmail.com','BRASOV')
 ;
 
-INSERT INTO Registrations (Registration_Id, Event_Id, Attendee_Id, Registration_Date, Regitration_Amount)
+INSERT INTO Registrations (Registration_Id, Event_Id, Attendee_Id, Registration_Date, Registration_Amount)
 VALUES
-    	(001, 1, 1456, '2023-06-25', '50 EUR'),
-    	(002, 2, 1325, '2023-06-26', '75 EUR'),
-    	(003, 3, 1645, '2023-06-27', '100 EUR'),
-    	(004, 4, 3145, '2023-06-28', '40 EUR'),
-	(005, 5, 2146, '2023-06-29', '30 EUR'),
-	(006, 6, 3251, '2023-06-24', '50 EUR'),
-	(007, 7, 2215, '2023-06-23', '70 EUR'),
-	(008, 8, 4311, '2023-06-25', '90 EUR'),
-	(009, 9, 3514, '2023-06-26', '200 EUR'),
-	(010, 10, 1925, '2023-06-27', '150 EUR'),
-	(011, 1, 2101, '2023-06-28', '50 EUR'),
-	(012, 3, 4705, '2023-06-29', '100 EUR'),
-	(013, 5, 1325, '2023-06-21', '30 EUR'),
-	(014, 7, 3145, '2023-06-30', '70 EUR'),
-	(015, 9, 1456, '2023-06-25', '200 EUR')
+    	(001, 1, 1456, '2023-06-25', 50),
+    	(002, 2, 1325, '2023-06-26', 75),
+    	(003, 3, 1645, '2023-06-27', 100),
+    	(004, 4, 3145, '2023-06-28', 40),
+	(005, 5, 2146, '2023-06-29', 30),
+	(006, 6, 3251, '2023-06-24', 50),
+	(007, 7, 2215, '2023-06-23', 70),
+	(008, 8, 4311, '2023-06-25', 90),
+	(009, 9, 3514, '2023-06-26', 200),
+	(010, 10, 1925, '2023-06-27', 150),
+	(011, 1, 2101, '2023-06-28', 50),
+	(012, 3, 4705, '2023-06-29', 100),
+	(013, 5, 1325, '2023-06-21', 30),
+	(014, 7, 3145, '2023-06-30', 70),
+	(015, 9, 1456, '2023-06-25', 200)
 ;
 
 -- 3.a) Insert a new event.
@@ -104,12 +104,19 @@ INSERT INTO Attendees VALUES (5421, 'Vlad Anghelescu', 425642564256, 'vlad@gmail
 
 -- 4.b) Registering an attendee for an event.
 
-INSERT INTO Registrations VALUES (016, 11, 5421, '2023-06-30', '200 EUR');
+INSERT INTO Registrations VALUES (016, 11, 5421, '2023-06-30', 200);
 
 -- 4.c) Develop queries to retrieve event information, generate attendee lists and calculate event attendance statistics.
 
-SELECT e.Event_Name, e.Event_Date, e.Event_Location, e.Event_Description, a.Attendee_Name, SUM (Registration_Amount) AS Attendace_Statistics
-FROM Events e
-JOIN Registrations r ON r.Event_Id = e.Event_Id
-AND Attendees a ON a.Attendee_Id = r.Attendee_ID
-WHERE e.Event_Id = '7';
+SELECT E.Event_Name, E.Event_Date, E.Event_Location, E.Event_Description, COUNT(R.Attendee_Id) AS No_Attendee
+FROM Events E
+LEFT JOIN Registrations R ON E.Event_Id = R.Event_Id
+GROUP BY E.Event_Name, E.Event_Date, E.Event_Location, E.Event_Description;
+
+-- or
+
+SELECT E.Event_Name, E.Event_Date, E.Event_Location, E.Event_Description, COUNT(R.Attendee_Id) AS No_Attendee
+FROM Events E
+LEFT JOIN Registrations R ON E.Event_Id = R.Event_Id
+WHERE E.Event_Id = '7'
+GROUP BY E.Event_Name, E.Event_Date, E.Event_Location, E.Event_Description;
