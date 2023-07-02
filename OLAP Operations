@@ -1,1 +1,54 @@
+-- 1. Create database to store the sales data.
 
+CREATE DATABASE "Sales_data"
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+
+-- 2. Create a table "Sales_sample".
+
+CREATE TABLE Sales_sample (
+	Product_Id INT NOT NULL PRIMARY KEY,
+	Region VARCHAR (50),
+	Date DATE,
+	Sales_amount INT
+);
+
+INSERT INTO Sales_sample (Product_Id, Region, Date, Sales_amount)
+VALUES 	(1, 'North', '2023-01-01', 1000),
+		(2, 'West', '2023-01-02', 1500),
+		(3, 'East', '2023-01-03', 800),
+		(4, 'South', '2023-01-04', 1200),
+		(5, 'North', '2023-01-05', 900),
+		(6, 'West', '2023-01-01', 2000),
+		(7, 'East', '2023-01-02', 1800),
+		(8, 'South', '2023-01-03', 700),
+		(9, 'South', '2023-01-06', 1300),
+		(10, 'North', '2023-01-07', 1000),
+		(11, 'North', '2023-01-07', 1000),
+		(12, 'West', '2023-01-06', 1500),
+		(13, 'East', '2023-01-03', 800),
+		(14, 'South', '2023-01-02', 1200),
+		(15, 'North', '2023-01-01', 900),
+		(16, 'West', '2023-01-05', 2000),
+		(17, 'East', '2023-01-04', 1800),
+		(18, 'South', '2023-01-03', 700),
+		(19, 'South', '2023-01-02', 1300),
+		(20, 'North', '2023-01-01', 1000)
+;
+
+-- 3.a) Write a query to perform drill down from region to product level to understand sales performance.
+
+SELECT Product_Id, Region, SUM (Sales_amount) AS Profit
+FROM Sales_sample
+GROUP BY Product_Id, Region;
+
+-- 3.b) Write a query to perform roll up from product to region level to view total sales by region.
+
+SELECT Region, SUM (Sales_amount) AS Profit
+FROM Sales_sample
+GROUP BY Region;
+
+-- 3.c) Write a query to slice the data to view sales for a particular region or date range.
