@@ -51,4 +51,28 @@ SELECT Region, SUM (Sales_amount) AS Profit
 FROM Sales_sample
 GROUP BY Region;
 
--- 3.c) Write a query to slice the data to view sales for a particular region or date range.
+-- 3.c) Write a query to explore sales data from different perspectives, such as product, region and date.
+
+SELECT Product_Id, Region, Date
+FROM Sales_sample
+GROUP BY Product_Id, Region, Date;
+
+-- 3.d) Write a query to slice the data to view sales for a particular region or date range.
+
+SELECT Date, SUM (Sales_amount) AS Profit
+FROM Sales_sample
+WHERE Date = '2023-01-03'
+GROUP BY Date;
+
+-- or
+
+SELECT Region, SUM (Sales_amount) AS Profit
+FROM Sales_sample
+WHERE Region = 'South'
+GROUP BY Region;
+
+-- 3.e) Write a query to view sales for a specific combinations of product, region and date.
+
+SELECT Product_Id, Region, Date, Sales_amount
+FROM Sales_sample
+WHERE Product_Id = 1 AND Region = 'North' AND Date = '2023-01-01';
