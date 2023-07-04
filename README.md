@@ -1,6 +1,6 @@
 # Project-Madalina
 
-Taskl
+Task 1
 
 Project Title: Academic Management System ( using SQL)
 
@@ -46,7 +46,7 @@ d) Write a query to retrieve the listof students who are enrolled in multiple co
 
 e) Write a query to retrieve the courses that have the highest number of enrolled students(arranging from highest to lowest)
 
-Task2
+Task 2
 
 Project: Student Database Management System{PostgresQL)
 
@@ -80,7 +80,7 @@ Develop a query to retrieve all students' information from the "student_table”
 
 10. Retrieve Student with Highest GPA. Write a query to rtrieve the name of the student with the highest GPA from the “sudent_info" table.
 
-Task3
+Task 3
 
 Project: Event Management System using PostgreSQL.
 
